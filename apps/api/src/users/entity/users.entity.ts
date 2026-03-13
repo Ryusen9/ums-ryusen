@@ -2,10 +2,13 @@ import {
   Column,
   Entity,
   JoinColumn,
+  JoinTable,
+  ManyToMany,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Tenant } from '../../tenants/entity/tenants.entity';
+import { Role } from '../../roles/entity/roles.entity';
 
 @Entity('users')
 export class User {
@@ -30,4 +33,10 @@ export class User {
   @ManyToOne(() => Tenant, (tenant) => tenant.users)
   @JoinColumn({ name: 'tenantId' })
   tenant!: Tenant;
+
+  @ManyToMany(() => Role)
+  @JoinTable({
+    name: 'user_roles',
+  })
+  roles!: Role[];
 }

@@ -1,4 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Tenant } from '../../tenants/entity/tenants.entity';
+import { Permission } from '../../permissions/entity/permission.entity';
 
 @Entity('roles')
 export class Role {
@@ -10,4 +19,13 @@ export class Role {
 
   @Column({ nullable: true })
   description?: string;
+
+  @ManyToOne(() => Tenant)
+  tenant!: Tenant;
+
+  @ManyToMany(() => Permission, (permission) => permission.roles)
+  @JoinTable({
+    name: 'role_permissions',
+  })
+  permissions!: Permission[];
 }
