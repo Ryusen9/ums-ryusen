@@ -1,5 +1,6 @@
 import {
   Column,
+  CreateDateColumn,
   Entity,
   JoinColumn,
   JoinTable,
@@ -39,4 +40,10 @@ export class User {
     name: 'user_roles',
   })
   roles!: Role[];
+
+  @CreateDateColumn()
+  createdAt!: Date;
+
+  @CreateDateColumn()
+  updatedAt!: Date;
 }
