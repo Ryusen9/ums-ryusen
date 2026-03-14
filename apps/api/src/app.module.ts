@@ -9,6 +9,7 @@ import { RolesModule } from './roles/roles.module';
 import { PermissionsModule } from './permissions/permissions.module';
 import path from 'path';
 import { TenantIdMiddleware } from './common/middlewares/tenant-id.middleware';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { TenantIdMiddleware } from './common/middlewares/tenant-id.middleware';
     UsersModule,
     RolesModule,
     PermissionsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
