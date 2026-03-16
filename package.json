@@ -20,6 +20,11 @@
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
+    "@types/passport-jwt": "^4.0.1",
     "turbo": "^2.8.16"
+  },
+  "dependencies": {
+    "@nestjs/jwt": "^11.0.2",
+    "passport-jwt": "^4.0.1"
   }
 }

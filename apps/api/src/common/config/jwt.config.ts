@@ -1,11 +1,17 @@
 import { registerAs } from '@nestjs/config';
 
-export default registerAs('jwt', () => {
+type JwtConfig = {
+  secret: string;
+  signOptions: {
+    expiresIn: number;
+  };
+};
+
+export default registerAs('jwt', (): JwtConfig => {
   return {
     secret: process.env.JWT_SECRET as string,
-    tokenAudience: process.env.JWT_TOKEN_AUDIENCE as string,
-    tokenIssuer: process.env.JWT_TOKEN_ISSUER as string,
-    tokenExpirationTime:
-      parseInt(process.env.JWT_TOKEN_EXPIRATION_TIME as string, 10) || 3600,
+    signOptions: {
+      expiresIn: Number(process.env.JWT_TOKEN_EXPIRATION_TIME) || 3600,
+    },
   };
 });
